@@ -363,100 +363,139 @@ Example:
 
         // Download submission file as PDF
         function downloadPDF() {
-            if (!validateForm()) return;
+            console.log('PDF download clicked'); // Debug log
             
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+            if (!validateForm()) {
+                console.log('Validation failed'); // Debug log
+                return;
+            }
             
-            const studentName = document.getElementById('studentName').value;
-            const studentId = document.getElementById('studentId').value;
-            const formattedData = generateSubmissionText();
+            console.log('Validation passed, generating PDF'); // Debug log
             
-            // Set up PDF styling
-            doc.setFontSize(16);
-            doc.setFont(undefined, 'bold');
-            doc.text('CACS304: Creative Research', 20, 20);
-            doc.text('Assessment 1: Research Proposal', 20, 30);
-            doc.text('AI Disclosure Statement', 20, 40);
-            
-            // Add a line
-            doc.setLineWidth(0.5);
-            doc.line(20, 45, 190, 45);
-            
-            // Reset font for body text
-            doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
-            
-            // Split text into lines that fit the page width
-            const splitText = doc.splitTextToSize(formattedData, 170);
-            
-            // Add text to PDF, handling page breaks
-            let yPosition = 55;
-            const lineHeight = 5;
-            const pageHeight = 280;
-            
-            splitText.forEach(line => {
-                if (yPosition > pageHeight) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                doc.text(line, 20, yPosition);
-                yPosition += lineHeight;
-            });
-            
-            // Generate filename and save
-            const filename = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.pdf`;
-            doc.save(filename);
-            
-            // Show success message
-            setTimeout(() => {
-                alert('✅ AI Disclosure Statement downloaded as PDF!\n\nPlease upload this PDF file to FeedbackFruits along with your research proposal.');
-            }, 100);
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                const studentName = document.getElementById('studentName').value;
+                const studentId = document.getElementById('studentId').value;
+                const formattedData = generateSubmissionText();
+                
+                // Set up PDF styling
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('CACS304: Creative Research', 20, 20);
+                doc.text('Assessment 1: Research Proposal', 20, 30);
+                doc.text('AI Disclosure Statement', 20, 40);
+                
+                // Add a line
+                doc.setLineWidth(0.5);
+                doc.line(20, 45, 190, 45);
+                
+                // Reset font for body text
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                
+                // Split text into lines that fit the page width
+                const splitText = doc.splitTextToSize(formattedData, 170);
+                
+                // Add text to PDF, handling page breaks
+                let yPosition = 55;
+                const lineHeight = 5;
+                const pageHeight = 280;
+                
+                splitText.forEach(line => {
+                    if (yPosition > pageHeight) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    doc.text(line, 20, yPosition);
+                    yPosition += lineHeight;
+                });
+                
+                // Generate filename and save
+                const filename = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.pdf`;
+                doc.save(filename);
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('✅ AI Disclosure Statement downloaded as PDF!\n\nPlease upload this PDF file to FeedbackFruits along with your research proposal.');
+                }, 100);
+                
+            } catch (error) {
+                console.error('PDF generation error:', error);
+                alert('Error generating PDF. Please try the "Download as Text" option instead, or contact your instructor.');
+            }
         }
 
         // Download submission file as text (backup option)
         function downloadText() {
-            if (!validateForm()) return;
+            console.log('Text download clicked'); // Debug log
             
-            const formattedData = generateSubmissionText();
-            const studentName = document.getElementById('studentName').value;
-            const studentId = document.getElementById('studentId').value;
+            if (!validateForm()) {
+                console.log('Validation failed'); // Debug log
+                return;
+            }
             
-            // Create downloadable text file
-            const blob = new Blob([formattedData], { type: 'text/plain;charset=utf-8' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
+            console.log('Validation passed, generating text file'); // Debug log
             
-            // Show success message
-            setTimeout(() => {
-                alert('✅ AI Disclosure Statement downloaded as text file!\n\nPlease upload this file to FeedbackFruits along with your research proposal.');
-            }, 100);
+            try {
+                const formattedData = generateSubmissionText();
+                const studentName = document.getElementById('studentName').value;
+                const studentId = document.getElementById('studentId').value;
+                
+                // Create downloadable text file
+                const blob = new Blob([formattedData], { type: 'text/plain;charset=utf-8' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('✅ AI Disclosure Statement downloaded as text file!\n\nPlease upload this file to FeedbackFruits along with your research proposal.');
+                }, 100);
+                
+            } catch (error) {
+                console.error('Text download error:', error);
+                alert('Error generating text file. Please contact your instructor.');
+            }
         }
 
         // Copy formatted submission to clipboard
         async function copyToClipboard() {
-            if (!validateForm()) return;
+            console.log('Copy to clipboard clicked'); // Debug log
             
-            const formattedData = generateSubmissionText();
+            if (!validateForm()) {
+                console.log('Validation failed'); // Debug log
+                return;
+            }
+            
+            console.log('Validation passed, copying to clipboard'); // Debug log
             
             try {
-                await navigator.clipboard.writeText(formattedData);
-                alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
-            } catch (err) {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = formattedData;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
+                const formattedData = generateSubmissionText();
+                
+                try {
+                    await navigator.clipboard.writeText(formattedData);
+                    alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = formattedData;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
+                }
+                
+            } catch (error) {
+                console.error('Copy to clipboard error:', error);
+                alert('Error copying to clipboard. Please try the download options instead.');
             }
         }
 
