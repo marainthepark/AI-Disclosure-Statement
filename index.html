@@ -317,16 +317,18 @@ The value that this AI tool offered to me during my assignment preparation inclu
 
             <div class="button-group">
                 <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
-                <button type="button" class="btn" onclick="downloadSubmission()">Download Submission File</button>
+                <button type="button" class="btn" onclick="downloadPDF()">Download as PDF</button>
+                <button type="button" class="btn btn-secondary" onclick="downloadText()">Download as Text</button>
                 <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
             </div>
             
             <div class="submission-info">
-                <strong>📁 How to Submit:</strong> Click "Download Submission File" to save your AI disclosure statement, then upload this file to FeedbackFruits along with your research proposal document.
+                <strong>📁 How to Submit:</strong> Click "Download as PDF" to save your AI disclosure statement as a professional PDF document, then upload this file to FeedbackFruits along with your research proposal document.
             </div>
         </form>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         // Show/hide AI details section based on checkbox selection
         document.querySelectorAll('input[name="aiUsage"]').forEach(checkbox => {
@@ -359,8 +361,61 @@ The value that this AI tool offered to me during my assignment preparation inclu
             }
         }
 
-        // Download submission file
-        function downloadSubmission() {
+        // Download submission file as PDF
+        function downloadPDF() {
+            if (!validateForm()) return;
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const studentName = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            const formattedData = generateSubmissionText();
+            
+            // Set up PDF styling
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('CACS304: Creative Research', 20, 20);
+            doc.text('Assessment 1: Research Proposal', 20, 30);
+            doc.text('AI Disclosure Statement', 20, 40);
+            
+            // Add a line
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            
+            // Reset font for body text
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            
+            // Split text into lines that fit the page width
+            const splitText = doc.splitTextToSize(formattedData, 170);
+            
+            // Add text to PDF, handling page breaks
+            let yPosition = 55;
+            const lineHeight = 5;
+            const pageHeight = 280;
+            
+            splitText.forEach(line => {
+                if (yPosition > pageHeight) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.text(line, 20, yPosition);
+                yPosition += lineHeight;
+            });
+            
+            // Generate filename and save
+            const filename = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.pdf`;
+            doc.save(filename);
+            
+            // Show success message
+            setTimeout(() => {
+                alert('✅ AI Disclosure Statement downloaded as PDF!\n\nPlease upload this PDF file to FeedbackFruits along with your research proposal.');
+            }, 100);
+        }
+
+        // Download submission file as text (backup option)
+        function downloadText() {
             if (!validateForm()) return;
             
             const formattedData = generateSubmissionText();
@@ -380,7 +435,7 @@ The value that this AI tool offered to me during my assignment preparation inclu
             
             // Show success message
             setTimeout(() => {
-                alert('✅ AI Disclosure Statement downloaded successfully!\n\nPlease upload this file to FeedbackFruits along with your research proposal.');
+                alert('✅ AI Disclosure Statement downloaded as text file!\n\nPlease upload this file to FeedbackFruits along with your research proposal.');
             }, 100);
         }
 
@@ -448,7 +503,7 @@ The value that this AI tool offered to me during my assignment preparation inclu
             return true;
         }
 
-        // Generate formatted submission text
+        // Generate formatted submission text for display
         function generateSubmissionText() {
             const studentName = document.getElementById('studentName').value;
             const studentId = document.getElementById('studentId').value;
@@ -515,7 +570,9 @@ ${aiValue}
 I confirm that while I used AI assistance as described above, the final research proposal represents my own creative research interests, academic understanding, and written expression. I understand that AI was used as a tool to support my research process as guided in CACS304 seminars, particularly the Week 4 research question development and search strategy activities.`;
             }
 
-            submission += `\n\n================================================================
+            submission += `
+
+================================================================
 Generated: ${new Date().toLocaleString('en-AU')}
 Form completed at: ${window.location.href}`;
 
