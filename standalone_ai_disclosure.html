@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CACS304 Assessment 1 - AI Disclosure Statement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        .course-title {
+            color: #d32f2f;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .assessment-title {
+            color: #666;
+            font-size: 18px;
+            margin: 5px 0 0 0;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            background-color: #f5f5f5;
+            padding: 10px 15px;
+            border-left: 4px solid #d32f2f;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], input[type="url"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="url"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #d32f2f;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .checkbox-group {
+            margin: 15px 0;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        .checkbox-group label {
+            display: inline;
+            font-weight: normal;
+        }
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        .example-box {
+            background-color: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .btn {
+            background-color: #d32f2f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+        .btn-secondary {
+            background-color: #666;
+        }
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+        .required {
+            color: #d32f2f;
+        }
+        .submission-info {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f5e8;
+            border-radius: 4px;
+            border-left: 4px solid #4caf50;
+        }
+        @media print {
+            body { background-color: white; }
+            .container { box-shadow: none; }
+            .button-group { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="course-title">CACS304: Creative Research</h1>
+            <h2 class="assessment-title">Assessment 1: Research Proposal<br>AI Disclosure Statement</h2>
+        </div>
+
+        <form id="aiDisclosureForm">
+            <div class="section">
+                <div class="form-group">
+                    <label for="studentName">Student Name: <span class="required">*</span></label>
+                    <input type="text" id="studentName" name="studentName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentId">Student ID: <span class="required">*</span></label>
+                    <input type="text" id="studentId" name="studentId" required>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">AI Tool Usage Declaration</div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="noAiUsed" name="aiUsage" value="none">
+                    <label for="noAiUsed">I did not use any AI tools in the preparation of this assessment</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="aiUsed" name="aiUsage" value="used">
+                    <label for="aiUsed">I used AI tools in the preparation of this assessment (complete sections below)</label>
+                </div>
+            </div>
+
+            <div id="aiDetailsSection" style="display: none;">
+                <div class="section">
+                    <div class="section-title">AI Tools Used</div>
+                    
+                    <div class="form-group">
+                        <label>Which AI system(s) did you use? (Select all that apply) <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="chatgpt" name="aiSystems" value="ChatGPT">
+                            <label for="chatgpt">ChatGPT (OpenAI)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="claude" name="aiSystems" value="Claude">
+                            <label for="claude">Claude (Anthropic)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="gemini" name="aiSystems" value="Gemini">
+                            <label for="gemini">Google Gemini (formerly Bard)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="copilot" name="aiSystems" value="Copilot">
+                            <label for="copilot">Microsoft Copilot</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="grammarly" name="aiSystems" value="Grammarly">
+                            <label for="grammarly">Grammarly AI</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="notion" name="aiSystems" value="Notion AI">
+                            <label for="notion">Notion AI</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="perplexity" name="aiSystems" value="Perplexity">
+                            <label for="perplexity">Perplexity AI</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="other-ai" name="aiSystems" value="Other">
+                            <label for="other-ai">Other (specify below)</label>
+                        </div>
+                        <input type="text" id="otherAiSpecify" name="otherAiSpecify" placeholder="If 'Other', please specify which AI tool(s)" style="margin-top: 10px;">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">How You Used AI</div>
+                    
+                    <div class="form-group">
+                        <label>How did you use AI for your research proposal? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-brainstorming" name="aiUses" value="brainstorming">
+                            <label for="use-brainstorming">Brainstorming research topics and ideas</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-questions" name="aiUses" value="research-questions">
+                            <label for="use-questions">Developing and refining research questions (as discussed in Week 4 seminar)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-search" name="aiUses" value="search-strategies">
+                            <label for="use-search">Formulating search strategies for finding sources</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-writing" name="aiUses" value="writing-assistance">
+                            <label for="use-writing">Writing assistance (grammar, clarity, structure)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-artist-bio" name="aiUses" value="artist-bio">
+                            <label for="use-artist-bio">Drafting or refining artist biography</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-background" name="aiUses" value="research-background">
+                            <label for="use-background">Understanding research background and context</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-objectives" name="aiUses" value="objectives">
+                            <label for="use-objectives">Clarifying project objectives and aims</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-editing" name="aiUses" value="editing">
+                            <label for="use-editing">Editing and proofreading</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-other" name="aiUses" value="other">
+                            <label for="use-other">Other (specify in additional details below)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalUse">Additional details about AI use:</label>
+                        <textarea id="additionalUse" name="additionalUse" placeholder="Provide more detail about how you used AI, or describe any other uses not listed above..."></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Examples of Prompts Used</div>
+                    
+                    <div class="form-group">
+                        <label for="prompts">Give an example of the kind of prompts that you used:</label>
+                        <textarea id="prompts" name="prompts" placeholder="Provide 1-2 examples of the types of prompts you used with AI tools. You don't need to list every single prompt.
+
+Example:
+'Here are my research questions for my creative project about contemporary dance. Please suggest improvements to make them more specific, craft-focused, and achievable for a semester-long project: [my questions]'
+
+'I'm researching physical theatre practices for my practice-led research project. Can you suggest additional search terms and synonyms that might help me find relevant sources?'"></textarea>
+                        <div class="help-text">Focus on giving representative examples rather than listing every prompt you used</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">How AI Output Was Used</div>
+                    
+                    <div class="form-group">
+                        <label for="outputUse">How did you use the AI output in your final submission?</label>
+                        <textarea id="outputUse" name="outputUse" placeholder="Explain how you incorporated, modified, or were inspired by the AI's responses. Did you use text directly, modify suggestions, or use ideas as starting points?"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Value of AI Tool</div>
+                    
+                    <div class="form-group">
+                        <label for="aiValue">What value did this AI tool offer during your research proposal preparation?</label>
+                        <textarea id="aiValue" name="aiValue" placeholder="Reflect on how the AI tool helped your creative research process. What did it enable you to do that you might not have done otherwise?"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">Example Statement:</div>
+                <em>I acknowledge the use of ChatGPT to develop and refine research questions and formulate search strategies for finding sources. Additional details: I used these tools as guided in Week 4 seminar during the research question generation and search strategy activities.
+
+Examples of prompts used: "Here are my research questions for my creative project about contemporary dance. Please suggest improvements to make them more specific, craft-focused, and achievable for a semester-long project: [my questions]" and "I'm researching embodied research methodologies for my practice-led research project. Can you suggest additional search terms and synonyms that might help me find relevant sources?"
+
+The output from these prompts was used to refine my research questions and develop more effective search strategies. I critically evaluated the AI suggestions and selected those that aligned with my project goals. I did not use any AI-generated text directly in my final submission.
+
+The value that this AI tool offered to me during my assignment preparation included helping me systematically refine my research questions and discover new search terms I hadn't considered, which improved my ability to find relevant academic sources for my research background.</em>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                <button type="button" class="btn" onclick="downloadSubmission()">Download Submission File</button>
+                <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+            </div>
+            
+            <div class="submission-info">
+                <strong>📁 How to Submit:</strong> Click "Download Submission File" to save your AI disclosure statement, then upload this file to FeedbackFruits along with your research proposal document.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Show/hide AI details section based on checkbox selection
+        document.querySelectorAll('input[name="aiUsage"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const aiDetailsSection = document.getElementById('aiDetailsSection');
+                const aiUsedCheckbox = document.getElementById('aiUsed');
+                
+                if (aiUsedCheckbox.checked) {
+                    aiDetailsSection.style.display = 'block';
+                    // Make required fields required
+                    document.getElementById('prompts').required = true;
+                } else {
+                    aiDetailsSection.style.display = 'none';
+                    // Remove required attribute
+                    document.getElementById('prompts').required = false;
+                }
+                
+                // Ensure only one checkbox is selected
+                document.querySelectorAll('input[name="aiUsage"]').forEach(cb => {
+                    if (cb !== this) cb.checked = false;
+                });
+            });
+        });
+
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                document.getElementById('aiDisclosureForm').reset();
+                document.getElementById('aiDetailsSection').style.display = 'none';
+                document.getElementById('prompts').required = false;
+            }
+        }
+
+        // Download submission file
+        function downloadSubmission() {
+            if (!validateForm()) return;
+            
+            const formattedData = generateSubmissionText();
+            const studentName = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            
+            // Create downloadable text file
+            const blob = new Blob([formattedData], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${studentId}_${studentName.replace(/\s+/g, '_')}_AI_Disclosure.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show success message
+            setTimeout(() => {
+                alert('✅ AI Disclosure Statement downloaded successfully!\n\nPlease upload this file to FeedbackFruits along with your research proposal.');
+            }, 100);
+        }
+
+        // Copy formatted submission to clipboard
+        async function copyToClipboard() {
+            if (!validateForm()) return;
+            
+            const formattedData = generateSubmissionText();
+            
+            try {
+                await navigator.clipboard.writeText(formattedData);
+                alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = formattedData;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('AI Disclosure Statement copied to clipboard! You can now paste it into an email or your LMS submission.');
+            }
+        }
+
+        // Validate required fields
+        function validateForm() {
+            const studentName = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            const aiUsageChecked = document.querySelector('input[name="aiUsage"]:checked');
+            
+            if (!studentName) {
+                alert('Please enter your name.');
+                document.getElementById('studentName').focus();
+                return false;
+            }
+            
+            if (!studentId) {
+                alert('Please enter your student ID.');
+                document.getElementById('studentId').focus();
+                return false;
+            }
+            
+            if (!aiUsageChecked) {
+                alert('Please indicate whether you used AI tools or not.');
+                return false;
+            }
+            
+            // If AI was used, check required fields
+            if (aiUsageChecked.value === 'used') {
+                const aiSystemsChecked = document.querySelectorAll('input[name="aiSystems"]:checked');
+                const prompts = document.getElementById('prompts').value;
+                
+                if (aiSystemsChecked.length === 0) {
+                    alert('Please select which AI system(s) you used.');
+                    return false;
+                }
+                
+                if (!prompts.trim()) {
+                    alert('Please provide an example of the kind of prompts you used with AI tools.');
+                    document.getElementById('prompts').focus();
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        // Generate formatted submission text
+        function generateSubmissionText() {
+            const studentName = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            const aiUsage = document.querySelector('input[name="aiUsage"]:checked')?.value;
+            
+            let submission = `CACS304: Creative Research - Assessment 1 Research Proposal
+AI DISCLOSURE STATEMENT
+================================================================
+
+Student Name: ${studentName}
+Student ID: ${studentId}
+Date: ${new Date().toLocaleDateString('en-AU')}
+Assessment: Research Proposal
+
+================================================================
+
+`;
+
+            if (aiUsage === 'none') {
+                submission += `AI USAGE DECLARATION:
+
+I did not use any AI tools in the preparation of this research proposal assessment.
+
+================================================================
+
+This statement confirms that my research proposal, including the artist biography, research topic, background, research questions, creative project description, and objectives, was completed without the assistance of artificial intelligence tools.`;
+            } else {
+                const aiSystems = Array.from(document.querySelectorAll('input[name="aiSystems"]:checked')).map(cb => cb.value);
+                const otherAiSpecify = document.getElementById('otherAiSpecify').value;
+                const aiUses = Array.from(document.querySelectorAll('input[name="aiUses"]:checked')).map(cb => cb.value);
+                const additionalUse = document.getElementById('additionalUse').value;
+                const prompts = document.getElementById('prompts').value;
+                const outputUse = document.getElementById('outputUse').value;
+                const aiValue = document.getElementById('aiValue').value;
+
+                let systemsList = aiSystems.join(', ');
+                if (aiSystems.includes('Other') && otherAiSpecify) {
+                    systemsList = systemsList.replace('Other', otherAiSpecify);
+                }
+
+                let usesList = aiUses.map(use => getUseDescription(use)).join(', ');
+
+                submission += `AI USAGE DECLARATION:
+
+I acknowledge the use of ${systemsList} to ${usesList}${additionalUse ? '. Additional details: ' + additionalUse : ''}.
+
+================================================================
+
+EXAMPLES OF PROMPTS USED:
+${prompts}
+
+================================================================
+
+HOW AI OUTPUT WAS USED IN MY RESEARCH PROPOSAL:
+${outputUse}
+
+================================================================
+
+VALUE OF AI TOOL IN MY RESEARCH PROCESS:
+${aiValue}
+
+================================================================
+
+I confirm that while I used AI assistance as described above, the final research proposal represents my own creative research interests, academic understanding, and written expression. I understand that AI was used as a tool to support my research process as guided in CACS304 seminars, particularly the Week 4 research question development and search strategy activities.`;
+            }
+
+            submission += `\n\n================================================================
+Generated: ${new Date().toLocaleString('en-AU')}
+Form completed at: ${window.location.href}`;
+
+            return submission;
+        }
+
+        // Convert use selections to descriptions
+        function getUseDescription(use) {
+            const descriptions = {
+                'brainstorming': 'brainstorm research topics and ideas',
+                'research-questions': 'develop and refine research questions',
+                'search-strategies': 'formulate search strategies for finding sources',
+                'writing-assistance': 'assist with writing (grammar, clarity, structure)',
+                'artist-bio': 'draft and refine my artist biography',
+                'research-background': 'understand research background and context',
+                'objectives': 'clarify project objectives and aims',
+                'editing': 'edit and proofread my work',
+                'other': 'assist with my research proposal'
+            };
+            return descriptions[use] || 'assist with my research proposal';
+        }
+
+        // Auto-save to localStorage (optional)
+        function saveFormData() {
+            const formData = new FormData(document.getElementById('aiDisclosureForm'));
+            const data = Object.fromEntries(formData);
+            localStorage.setItem('cacs304_ai_disclosure', JSON.stringify(data));
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(saveFormData, 30000);
+
+        // Load saved data on page load
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('cacs304_ai_disclosure');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = data[key] === element.value;
+                        } else {
+                            element.value = data[key];
+                        }
+                    }
+                });
+                // Trigger the AI usage display logic
+                if (data.aiUsage === 'used') {
+                    document.getElementById('aiUsed').checked = true;
+                    document.getElementById('aiDetailsSection').style.display = 'block';
+                    document.getElementById('prompts').required = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
