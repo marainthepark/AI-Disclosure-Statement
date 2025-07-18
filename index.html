@@ -225,48 +225,59 @@
                     <div class="section-title">How You Used AI</div>
                     
                     <div class="form-group">
-                        <label>How did you use AI for your research proposal? (Select all that apply)</label>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="use-brainstorming" name="aiUses" value="brainstorming">
-                            <label for="use-brainstorming">Brainstorming research topics and ideas</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="use-questions" name="aiUses" value="research-questions">
-                            <label for="use-questions">Developing and refining research questions (as discussed in Week 4 seminar)</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="use-search" name="aiUses" value="search-strategies">
-                            <label for="use-search">Formulating search strategies for finding sources</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="use-writing" name="aiUses" value="writing-assistance">
-                            <label for="use-writing">Writing assistance (grammar, clarity, structure)</label>
-                        </div>
+                        <label>Which sections of your research proposal did you use AI for? (Select all that apply)</label>
                         <div class="checkbox-group">
                             <input type="checkbox" id="use-artist-bio" name="aiUses" value="artist-bio">
-                            <label for="use-artist-bio">Drafting or refining artist biography</label>
+                            <label for="use-artist-bio">Artist Biography</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="use-background" name="aiUses" value="research-background">
-                            <label for="use-background">Understanding research background and context</label>
+                            <input type="checkbox" id="use-research-topic" name="aiUses" value="research-topic">
+                            <label for="use-research-topic">Research Topic/Subject</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-research-background" name="aiUses" value="research-background">
+                            <label for="use-research-background">Research Background</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-research-questions" name="aiUses" value="research-questions">
+                            <label for="use-research-questions">Research Questions</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-creative-project" name="aiUses" value="creative-project">
+                            <label for="use-creative-project">Creative Project Description</label>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="use-objectives" name="aiUses" value="objectives">
-                            <label for="use-objectives">Clarifying project objectives and aims</label>
+                            <label for="use-objectives">Objectives/Aims</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="use-editing" name="aiUses" value="editing">
-                            <label for="use-editing">Editing and proofreading</label>
+                            <input type="checkbox" id="use-brainstorming" name="aiUses" value="brainstorming">
+                            <label for="use-brainstorming">Initial brainstorming and idea generation</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="use-other" name="aiUses" value="other">
-                            <label for="use-other">Other (specify in additional details below)</label>
+                            <input type="checkbox" id="use-search-strategies" name="aiUses" value="search-strategies">
+                            <label for="use-search-strategies">Developing search strategies for finding sources</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-writing-editing" name="aiUses" value="writing-editing">
+                            <label for="use-writing-editing">Writing assistance and editing</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="use-structuring" name="aiUses" value="structuring">
+                            <label for="use-structuring">Organizing and structuring ideas</label>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="additionalUse">Additional details about AI use:</label>
-                        <textarea id="additionalUse" name="additionalUse" placeholder="Provide more detail about how you used AI, or describe any other uses not listed above..."></textarea>
+                        <label for="specificSections">Provide specific details about how you used AI for the sections you selected above:</label>
+                        <textarea id="specificSections" name="specificSections" placeholder="For each section you ticked above, explain specifically how you used AI. For example:
+
+Artist Biography: Used ChatGPT to help refine the wording and make it more concise within the 50-word limit.
+
+Research Questions: Used Claude to help structure my questions following the Week 4 seminar guidance to make them more craft-focused and achievable.
+
+Writing assistance: Used Grammarly to check grammar and clarity throughout the proposal."></textarea>
+                        <div class="help-text">Be specific about how AI helped with each section you selected</div>
                     </div>
                 </div>
 
@@ -289,8 +300,8 @@ Example:
                     <div class="section-title">How AI Output Was Used</div>
                     
                     <div class="form-group">
-                        <label for="outputUse">How did you use the AI output in your final submission?</label>
-                        <textarea id="outputUse" name="outputUse" placeholder="Explain how you incorporated, modified, or were inspired by the AI's responses. Did you use text directly, modify suggestions, or use ideas as starting points?"></textarea>
+                        <label for="outputUse">How did you incorporate the AI output into your final research proposal?</label>
+                        <textarea id="outputUse" name="outputUse" placeholder="Explain how you used the AI suggestions in your final submission. Did you use text directly, modify suggestions, or use ideas as starting points? Be specific about how AI contributions were integrated into your work."></textarea>
                     </div>
                 </div>
 
@@ -304,21 +315,13 @@ Example:
                 </div>
             </div>
 
-            <div class="example-box">
-                <div class="example-title">Example Statement:</div>
-                <em>I acknowledge the use of ChatGPT to develop and refine research questions and formulate search strategies for finding sources. Additional details: I used these tools as guided in Week 4 seminar during the research question generation and search strategy activities.
-
-Examples of prompts used: "Here are my research questions for my creative project about contemporary dance. Please suggest improvements to make them more specific, craft-focused, and achievable for a semester-long project: [my questions]" and "I'm researching embodied research methodologies for my practice-led research project. Can you suggest additional search terms and synonyms that might help me find relevant sources?"
-
-The output from these prompts was used to refine my research questions and develop more effective search strategies. I critically evaluated the AI suggestions and selected those that aligned with my project goals. I did not use any AI-generated text directly in my final submission.
-
-The value that this AI tool offered to me during my assignment preparation included helping me systematically refine my research questions and discover new search terms I hadn't considered, which improved my ability to find relevant academic sources for my research background.</em>
-            </div>
-
             <div class="button-group">
                 <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
                 <button type="button" class="btn" onclick="downloadPDF()">Download as PDF</button>
                 <button type="button" class="btn btn-secondary" onclick="downloadText()">Download as Text</button>
+            </div>
+            
+            <div class="button-group" style="margin-top: 10px;">
                 <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
             </div>
             
@@ -534,7 +537,7 @@ This statement confirms that my research proposal, including the artist biograph
                 const aiSystems = Array.from(document.querySelectorAll('input[name="aiSystems"]:checked')).map(cb => cb.value);
                 const otherAiSpecify = document.getElementById('otherAiSpecify').value;
                 const aiUses = Array.from(document.querySelectorAll('input[name="aiUses"]:checked')).map(cb => cb.value);
-                const additionalUse = document.getElementById('additionalUse').value;
+                const specificSections = document.getElementById('specificSections').value;
                 const prompts = document.getElementById('prompts').value;
                 const outputUse = document.getElementById('outputUse').value;
                 const aiValue = document.getElementById('aiValue').value;
@@ -548,7 +551,12 @@ This statement confirms that my research proposal, including the artist biograph
 
                 submission += `AI USAGE DECLARATION:
 
-I acknowledge the use of ${systemsList} to ${usesList}${additionalUse ? '. Additional details: ' + additionalUse : ''}.
+I acknowledge the use of ${systemsList} for assistance with the following sections of my research proposal: ${usesList}${additionalDetails ? '. Additional details: ' + additionalDetails : ''}.
+
+================================================================
+
+SPECIFIC USE BY SECTION:
+${specificSections}
 
 ================================================================
 
@@ -582,17 +590,18 @@ Form completed at: ${window.location.href}`;
         // Convert use selections to descriptions
         function getUseDescription(use) {
             const descriptions = {
-                'brainstorming': 'brainstorm research topics and ideas',
-                'research-questions': 'develop and refine research questions',
-                'search-strategies': 'formulate search strategies for finding sources',
-                'writing-assistance': 'assist with writing (grammar, clarity, structure)',
-                'artist-bio': 'draft and refine my artist biography',
-                'research-background': 'understand research background and context',
-                'objectives': 'clarify project objectives and aims',
-                'editing': 'edit and proofread my work',
-                'other': 'assist with my research proposal'
+                'artist-bio': 'Artist Biography',
+                'research-topic': 'Research Topic/Subject',
+                'research-background': 'Research Background',
+                'research-questions': 'Research Questions',
+                'creative-project': 'Creative Project Description',
+                'objectives': 'Objectives/Aims',
+                'brainstorming': 'Initial brainstorming and idea generation',
+                'search-strategies': 'Developing search strategies for finding sources',
+                'writing-editing': 'Writing assistance and editing',
+                'structuring': 'Organizing and structuring ideas'
             };
-            return descriptions[use] || 'assist with my research proposal';
+            return descriptions[use] || use;
         }
 
         // Auto-save to localStorage (optional)
