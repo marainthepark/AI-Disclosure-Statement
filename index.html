@@ -559,9 +559,9 @@ Example:
 
         // Generate formatted submission text for display
         function generateSubmissionText() {
-            const studentName = document.getElementById('studentName').value;
-            const studentId = document.getElementById('studentId').value;
-            const aiUsage = document.querySelector('input[name="aiUsage"]:checked')?.value;
+            const studentName = document.getElementById('studentName').value || '';
+            const studentId = document.getElementById('studentId').value || '';
+            const aiUsage = document.querySelector('input[name="aiUsage"]:checked')?.value || '';
             
             let submission = `CACS304: Creative Research - Assessment 1 Research Proposal
 AI DISCLOSURE STATEMENT
@@ -586,12 +586,12 @@ I did not use any AI tools in the preparation of this research proposal assessme
 This statement confirms that my research proposal, including the artist biography, research topic, background, research questions, creative project description, and objectives, was completed without the assistance of artificial intelligence tools.`;
             } else {
                 const aiSystems = Array.from(document.querySelectorAll('input[name="aiSystems"]:checked')).map(cb => cb.value);
-                const otherAiSpecify = document.getElementById('otherAiSpecify').value;
+                const otherAiSpecify = document.getElementById('otherAiSpecify')?.value || '';
                 const aiUses = Array.from(document.querySelectorAll('input[name="aiUses"]:checked')).map(cb => cb.value);
-                const specificSections = document.getElementById('specificSections').value;
-                const prompts = document.getElementById('prompts').value;
-                const outputUse = document.getElementById('outputUse').value;
-                const aiValue = document.getElementById('aiValue').value;
+                const specificSections = document.getElementById('specificSections')?.value || '';
+                const prompts = document.getElementById('prompts')?.value || '';
+                const outputUse = document.getElementById('outputUse')?.value || '';
+                const aiValue = document.getElementById('aiValue')?.value || '';
 
                 let systemsList = aiSystems.join(', ');
                 if (aiSystems.includes('Other') && otherAiSpecify) {
@@ -602,7 +602,7 @@ This statement confirms that my research proposal, including the artist biograph
 
                 submission += `AI USAGE DECLARATION:
 
-I acknowledge the use of ${systemsList} for assistance with the following sections of my research proposal: ${usesList}${additionalDetails ? '. Additional details: ' + additionalDetails : ''}.
+I acknowledge the use of ${systemsList} for assistance with the following sections of my research proposal: ${usesList}.
 
 ================================================================
 
