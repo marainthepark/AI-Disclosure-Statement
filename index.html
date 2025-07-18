@@ -498,6 +498,21 @@ Example:
                     document.getElementById('prompts').focus();
                     return false;
                 }
+                
+                // Check if at least one use case is selected
+                const aiUsesChecked = document.querySelectorAll('input[name="aiUses"]:checked');
+                if (aiUsesChecked.length === 0) {
+                    alert('Please select which sections of your research proposal you used AI for.');
+                    return false;
+                }
+                
+                // Check if specific sections field is filled
+                const specificSections = document.getElementById('specificSections').value;
+                if (!specificSections.trim()) {
+                    alert('Please provide specific details about how you used AI for the sections you selected.');
+                    document.getElementById('specificSections').focus();
+                    return false;
+                }
             }
             
             return true;
